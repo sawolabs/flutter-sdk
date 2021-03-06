@@ -2,10 +2,10 @@
 Passwordless and OTP-less Authentication for your website. It helps you to authenticate user via their email or phone number.
 
 ## Getting Started
-* [Documentation](http://docs.sawolabs.com/sawo)
-* [Developer dashboard](http://dev.sawolabs.com/)
+* [Documentation](https://docs.sawolabs.com/sawo)
+* [Developer dashboard](https://dev.sawolabs.com/)
 
-To get started, you can [create a free account at SAWO](http://dev.sawolabs.com/) to get your API keys.
+To get started, you can [create a free account at SAWO](https://dev.sawolabs.com/) to get your API keys.
 
 ## Installing
 
@@ -15,7 +15,7 @@ A step by step series of examples that tell you how to get a development env run
 
 ```
 dependencies:
-  sawo: ^0.0.3
+  sawo: ^0.0.4
 ```
 
 #### Install the plugin, by running mentioned command
@@ -91,7 +91,7 @@ when user successfully verified, the callback method will get invoked with the p
 
 ## Versioning
 
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags). 
+We use [SemVer](https://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags). 
 
 ## Authors
 * [SAWO Labs](https://github.com/sawolab)

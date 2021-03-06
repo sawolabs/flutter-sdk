@@ -37,6 +37,7 @@ class Sawo {
   }
 }
 
+// ignore: must_be_immutable
 class WebViewContainer extends StatefulWidget {
   String apiKey;
   String hostname;
