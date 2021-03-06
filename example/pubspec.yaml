@@ -1,0 +1,25 @@
+name: sawo_example
+description: Passwordless and OTP-less Authentication for your website. 
+author: Chander Prakash <chanderp031@gmail.com><https://github.com/chander-prakash>
+
+# The following line prevents the package from being accidentally published to
+# pub.dev using `pub publish`. This is preferred for private packages.
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+
+environment:
+  sdk: ">=2.7.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  sawo:
+    path: ../
+  cupertino_icons: ^1.0.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+flutter:
+  uses-material-design: true
