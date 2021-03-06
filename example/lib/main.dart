@@ -36,9 +36,13 @@ class _SelectionButtonState extends State<SelectionButton> {
     setState(() {
       user = payload;
     });
+    String message = "Login successful :)";
+    if (payload == null || (payload is String && payload.length == 0)) {
+      message = "Login Failed :(";
+    }
     Scaffold.of(context)
       ..removeCurrentSnackBar()
-      ..showSnackBar(SnackBar(content: Text("successful login")));
+      ..showSnackBar(SnackBar(content: Text("$message")));
   }
 
   @override
