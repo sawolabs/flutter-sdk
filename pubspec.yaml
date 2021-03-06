@@ -1,7 +1,6 @@
 name: sawo
 description: Passwordless and OTP-less Authentication for your website. 
-version: 0.0.1
-author: Chander Prakash <chanderp031@gmail.com><https://github.com/chander-prakash>
+version: 0.0.3
 homepage: https://github.com/sawolab/flutter-sdk
 
 environment:

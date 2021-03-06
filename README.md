@@ -15,7 +15,7 @@ A step by step series of examples that tell you how to get a development env run
 
 ```
 dependencies:
-  sawo: ^1.0.0
+  sawo: ^0.0.3
 ```
 
 #### Install the plugin, by running mentioned command
@@ -87,7 +87,7 @@ import 'package:sawo/sawo.dart';
 
 when user successfully verified, the callback method will get invoked with the payload which contains userID, and is something went wrong the payload will get null.
 
-## [Sawo Example Project] (https://github.com/sawolab/flutter-example)
+## [Sawo Example Project](https://pub.dev/packages/sawo/example)
 
 ## Versioning
 
