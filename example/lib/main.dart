@@ -36,14 +36,9 @@ class _SelectionButtonState extends State<SelectionButton> {
     setState(() {
       user = payload;
     });
-    print(
-        "SAWO: success callback called- from the client---++++------------- $payload");
-
-    // After the Selection Screen returns a result, hide any previous snackbars
-    // and show the new result.
     Scaffold.of(context)
       ..removeCurrentSnackBar()
-      ..showSnackBar(SnackBar(content: Text("$user")));
+      ..showSnackBar(SnackBar(content: Text("successful login")));
   }
 
   @override
