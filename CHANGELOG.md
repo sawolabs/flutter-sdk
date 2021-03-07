@@ -1,3 +1,11 @@
+## 0.0.8
+Changed:
+* Update Sawo configuration
+
+## 0.0.7
+Changed:
+* Update example project
+
 ## 0.0.6
 Changed:
 * Update dependency package

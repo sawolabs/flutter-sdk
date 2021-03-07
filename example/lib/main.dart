@@ -57,17 +57,17 @@ class _SelectionButtonState extends State<SelectionButton> {
         ),
         TextField(
           onChanged: (text) {
-            toogleState("hostname", text);
+            toogleState("secretKey", text);
           },
           decoration:
-              InputDecoration(hintText: 'Hostname', labelText: 'Hostname'),
+              InputDecoration(hintText: 'SecretKey', labelText: 'SecretKey'),
         ),
         Text("UserData :- $user"),
         ElevatedButton(
           onPressed: () {
             Sawo sawo = new Sawo(
               apiKey: config["apiKey"],
-              hostname: config["hostname"],
+              secretKey: config["secretKey"],
             );
             sawo.signIn(
               context: context,
@@ -81,7 +81,7 @@ class _SelectionButtonState extends State<SelectionButton> {
           onPressed: () {
             Sawo sawo = new Sawo(
               apiKey: config["apiKey"],
-              hostname: config["hostname"],
+              secretKey: config["secretKey"],
             );
             sawo.signIn(
               context: context,

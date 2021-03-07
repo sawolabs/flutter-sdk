@@ -5,16 +5,16 @@ import 'package:uuid/uuid.dart';
 
 class Sawo {
   String apiKey;
-  String hostname;
+  String secretKey;
   String identifierType;
 
   // constructor
   Sawo({
     @required this.apiKey,
-    @required this.hostname,
+    @required this.secretKey,
   }) {
     assert(this.apiKey != null, "API Key ID is required");
-    assert(this.hostname != null, "API Key ID is required");
+    assert(this.secretKey != null, "API Key ID is required");
   }
 
   signIn({BuildContext context, identifierType, callback}) async {
@@ -27,7 +27,7 @@ class Sawo {
       MaterialPageRoute(
         builder: (context) => WebViewContainer(
           apiKey: apiKey,
-          hostname: hostname,
+          secretKey: secretKey,
           navContext: context,
           identifierType: identifierType,
         ),
@@ -40,27 +40,27 @@ class Sawo {
 // ignore: must_be_immutable
 class WebViewContainer extends StatefulWidget {
   String apiKey;
-  String hostname;
+  String secretKey;
   String identifierType;
   BuildContext navContext;
 
   WebViewContainer({
     this.apiKey,
-    this.hostname,
+    this.secretKey,
     this.navContext,
     this.identifierType,
   });
   @override
   createState() => _WebViewContainerState(
       apiKey: apiKey,
-      hostname: hostname,
+      secretKey: secretKey,
       navContext: navContext,
       identifierType: identifierType);
 }
 
 class _WebViewContainerState extends State<WebViewContainer> {
   String apiKey;
-  String hostname;
+  String secretKey;
   String identifierType;
   BuildContext navContext;
 
@@ -71,14 +71,9 @@ class _WebViewContainerState extends State<WebViewContainer> {
   var _eventPrefix;
   WebViewController _controller;
 
-  // Configuration
-  // var _hostName = "packages.sawolabs.com";
-  // var _identifierType = "email";
-  // var _apiKey = "396487cf-d11a-4cf3-8e15-067ce2509b53";
-
   _WebViewContainerState({
     this.apiKey,
-    this.hostname,
+    this.secretKey,
     this.navContext,
     this.identifierType,
   });
@@ -136,7 +131,7 @@ class _WebViewContainerState extends State<WebViewContainer> {
               payload: {
                 identifierType: '$identifierType',
                 apiKey: '$apiKey',
-                hostName: '$hostname'
+                secretKey: '$secretKey'
               }
             }, '*');
             break;
