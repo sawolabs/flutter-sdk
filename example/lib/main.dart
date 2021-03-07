@@ -33,16 +33,12 @@ class _SelectionButtonState extends State<SelectionButton> {
   );
 
   void payloadCallback(context, payload) {
+    if (payload == null || (payload is String && payload.length == 0)) {
+      payload = "Login Failed :(";
+    }
     setState(() {
       user = payload;
     });
-    String message = "Login successful :)";
-    if (payload == null || (payload is String && payload.length == 0)) {
-      message = "Login Failed :(";
-    }
-    Scaffold.of(context)
-      ..removeCurrentSnackBar()
-      ..showSnackBar(SnackBar(content: Text("$message")));
   }
 
   @override

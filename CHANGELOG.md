@@ -1,3 +1,7 @@
+## 0.0.6
+Changed:
+* Update dependency package
+
 ## 0.0.4
 Changed:
 * Fix the method name
