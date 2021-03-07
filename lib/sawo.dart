@@ -17,7 +17,7 @@ class Sawo {
     assert(this.hostname != null, "API Key ID is required");
   }
 
-  singIn({BuildContext context, identifierType, callback}) async {
+  signIn({BuildContext context, identifierType, callback}) async {
     identifierType = identifierType;
     // Navigator.push returns a Future that completes after calling
     //@required this.identifierType

@@ -51,14 +51,14 @@ class _SelectionButtonState extends State<SelectionButton> {
       child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
         Text("UserData: $user"),
         ElevatedButton(
-          onPressed: () => sawo.singIn(
+          onPressed: () => sawo.signIn(
               context: context,
               identifierType: 'email',
               callback: payloadCallback),
           child: Text('Email Login'),
         ),
         ElevatedButton(
-          onPressed: () => sawo.singIn(
+          onPressed: () => sawo.signIn(
               context: context,
               identifierType: 'phone_number_sms',
               callback: payloadCallback),

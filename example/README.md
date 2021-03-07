@@ -15,7 +15,7 @@ A step by step series of examples that tell you how to get a development env run
 
 ```
 dependencies:
-  sawo: ^0.0.4
+  sawo: ^0.0.5
 ```
 
 #### Install the plugin, by running mentioned command
