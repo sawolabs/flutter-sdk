@@ -26,12 +26,10 @@ class SelectionButton extends StatefulWidget {
 }
 
 class _SelectionButtonState extends State<SelectionButton> {
+  // Sawo configuration object
+  var config = {};
+  // user payload
   String user;
-  Sawo sawo = new Sawo(
-    apiKey: "396487cf-d11a-4cf3-8e15-067ce2509b53",
-    hostname: "packages.sawolabs.com",
-  );
-
   void payloadCallback(context, payload) {
     if (payload == null || (payload is String && payload.length == 0)) {
       payload = "Login Failed :(";
@@ -41,23 +39,56 @@ class _SelectionButtonState extends State<SelectionButton> {
     });
   }
 
+  void toogleState(typedata, text) => setState(() {
+        config[typedata] = text;
+      });
+
   @override
   Widget build(BuildContext context) {
+    Sawo sawo;
     return Center(
       child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-        Text("UserData: $user"),
+        TextField(
+          onChanged: (text) {
+            toogleState("apiKey", text);
+          },
+          decoration:
+              InputDecoration(hintText: 'API Key', labelText: 'API Key'),
+        ),
+        TextField(
+          onChanged: (text) {
+            toogleState("hostname", text);
+          },
+          decoration:
+              InputDecoration(hintText: 'Hostname', labelText: 'Hostname'),
+        ),
+        Text("UserData :- $user"),
         ElevatedButton(
-          onPressed: () => sawo.signIn(
+          onPressed: () {
+            Sawo sawo = new Sawo(
+              apiKey: config["apiKey"],
+              hostname: config["hostname"],
+            );
+            sawo.signIn(
               context: context,
               identifierType: 'email',
-              callback: payloadCallback),
+              callback: payloadCallback,
+            );
+          },
           child: Text('Email Login'),
         ),
         ElevatedButton(
-          onPressed: () => sawo.signIn(
+          onPressed: () {
+            Sawo sawo = new Sawo(
+              apiKey: config["apiKey"],
+              hostname: config["hostname"],
+            );
+            sawo.signIn(
               context: context,
               identifierType: 'phone_number_sms',
-              callback: payloadCallback),
+              callback: payloadCallback,
+            );
+          },
           child: Text('Phone Login'),
         ),
       ]),
