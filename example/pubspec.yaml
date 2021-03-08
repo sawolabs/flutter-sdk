@@ -12,7 +12,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  sawo: ^0.0.8
+  sawo:
+    path: ../
   cupertino_icons: ^1.0.0
 
 dev_dependencies:

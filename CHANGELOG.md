@@ -1,5 +1,9 @@
 ## 0.0.8
 Changed:
+* Update documentation file
+
+## 0.0.8
+Changed:
 * Update Sawo configuration
 
 ## 0.0.7

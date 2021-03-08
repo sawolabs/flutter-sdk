@@ -36,13 +36,13 @@ import 'package:sawo/sawo.dart';
     * Set Project Host
         *  For dev: point to localhost
         *  For prod: point to your domain.
-*  Copy your API key & hostname
+*  Copy your API key & Secret Key (Secret key will mailed you on your registered email address)
 
 #### Create a Sawo Instance
 ```dart
     Sawo sawo = new Sawo(
         apiKey: <YOUR-API-KEY>,
-        hostname: <YOUR-HOSTNAME>,
+        secretKey: <YOUR-Secret-Key>,
      );
 ```
 
@@ -52,37 +52,74 @@ import 'package:sawo/sawo.dart';
 
 ```dart
 
+    // Sawo configuration object
+    var config = {};
+    // user payload
+    String user;
     void payloadCallback(context, payload) {
-        // BuildContext Context
-        // String payload || null
-    }
-    
-    @override
-      Widget build(BuildContext context) {
-        return Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center, 
-            children: [
-                Text("UserData After Login: $user"),
-                ElevatedButton(
-                    onPressed: () => sawo.singIn(
-                        context: context, // BuildContext
-                        identifierType: 'email', // email identifier
-                        callback: payloadCallback // your callback method to receive a user payload
-                    ),
-                    child: Text('Email Login'),
-                ),
-                ElevatedButton(
-                    onPressed: () => sawo.singIn(
-                        context: context, // BuildContext
-                        identifierType: 'phone_number_sms', // email identifier
-                        callback: payloadCallback // your callback method to receive a user payload
-                    ),
-                    child: Text('Phone Login'),
-                ),
-          ]),
-        );
+      if (payload == null || (payload is String && payload.length == 0)) {
+        payload = "Login Failed :(";
       }
+      setState(() {
+        user = payload;
+      });
+    }
+
+    void toogleState(typedata, text) => setState(() {
+          config[typedata] = text;
+        });
+
+    @override
+    Widget build(BuildContext context) {
+      Sawo sawo;
+      return Center(
+        child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+          TextField(
+            onChanged: (text) {
+              toogleState("apiKey", text);
+            },
+            decoration:
+                InputDecoration(hintText: 'API Key', labelText: 'API Key'),
+          ),
+          TextField(
+            onChanged: (text) {
+              toogleState("secretKey", text);
+            },
+            decoration:
+                InputDecoration(hintText: 'SecretKey', labelText: 'SecretKey'),
+          ),
+          Text("UserData :- $user"),
+          ElevatedButton(
+            onPressed: () {
+              Sawo sawo = new Sawo(
+                apiKey: config["apiKey"],
+                secretKey: config["secretKey"],
+              );
+              sawo.signIn(
+                context: context,
+                identifierType: 'email',
+                callback: payloadCallback,
+              );
+            },
+            child: Text('Email Login'),
+          ),
+          ElevatedButton(
+            onPressed: () {
+              Sawo sawo = new Sawo(
+                apiKey: config["apiKey"],
+                secretKey: config["secretKey"],
+              );
+              sawo.signIn(
+                context: context,
+                identifierType: 'phone_number_sms',
+                callback: payloadCallback,
+              );
+            },
+            child: Text('Phone Login'),
+          ),
+        ]),
+      );
+    }
 ```
 
 when user successfully verified, the callback method will get invoked with the payload which contains userID, and is something went wrong the payload will get null.
