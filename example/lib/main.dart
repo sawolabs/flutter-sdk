@@ -45,7 +45,6 @@ class _SelectionButtonState extends State<SelectionButton> {
 
   @override
   Widget build(BuildContext context) {
-    Sawo sawo;
     return Center(
       child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
         TextField(
@@ -65,11 +64,10 @@ class _SelectionButtonState extends State<SelectionButton> {
         Text("UserData :- $user"),
         ElevatedButton(
           onPressed: () {
-            Sawo sawo = new Sawo(
+            Sawo(
               apiKey: config["apiKey"],
               secretKey: config["secretKey"],
-            );
-            sawo.signIn(
+            ).signIn(
               context: context,
               identifierType: 'email',
               callback: payloadCallback,
@@ -79,11 +77,10 @@ class _SelectionButtonState extends State<SelectionButton> {
         ),
         ElevatedButton(
           onPressed: () {
-            Sawo sawo = new Sawo(
+            Sawo(
               apiKey: config["apiKey"],
               secretKey: config["secretKey"],
-            );
-            sawo.signIn(
+            ).signIn(
               context: context,
               identifierType: 'phone_number_sms',
               callback: payloadCallback,
