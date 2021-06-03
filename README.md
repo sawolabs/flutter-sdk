@@ -131,8 +131,7 @@ when user successfully verified, the callback method will get invoked with the p
 We use [SemVer](https://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags). 
 
 ## Authors
-* [SAWO Labs](https://github.com/sawolab)
-* [Chander Prakash](https://github.com/chander-prakash)
+* [SAWO Labs](https://github.com/sawolabs)
 
 ## License
 
