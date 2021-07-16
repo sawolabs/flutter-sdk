@@ -11,7 +11,7 @@ To get started, you can [create a free account at SAWO](https://dev.sawolabs.com
 
 ## Installing
 
-A step by step series of examples that tell you how to get a development env running. These instructions will let you render the form in your speicified container, and allow you to attach successful login callback for futher actions.
+A step by step series of examples that tell you how to get a development env running. These instructions will let you render the form in your specified container, and allow you to attach successful login callback for futher actions.
 
 #### Add the plugin in dependencies
 
@@ -36,15 +36,13 @@ import 'package:sawo/sawo.dart';
 
 - Login to sawo [dev console.](dev.sawolabs.com)
 - Create a new project
+  - Select either Android or iOS. But don't follow the steps which are mentioned there
   - Set Project Name
-  - Set Project Host
-    - For dev: point to localhost
-    - For prod: point to your domain.
-- Copy your API key & Secret Key (Secret key will mailed you on your registered email address)
+- Copy your API key & Secret Key from the file which has been downloaded automatically.
 
-#### Android Configuration
+#### Requirements
 
-Change your minSdkVersion to >=19 from android/app/build.gradle file
+- In [project]/android/app/build.gradle set minSdkVersion to >= 19.
 
 #### Create a Sawo Instance
 
@@ -114,13 +112,9 @@ Change your minSdkVersion to >=19 from android/app/build.gradle file
   }
 ```
 
-When user successfully verified, the callback method will get invoked with the payload which contains userID, and is something went wrong the payload will get null.
+When the user is successfully verified, the callback method will get invoked with the payload containing the userID and other information. It will return empty payload for unsuccessful verification.
 
 ## [Sawo Example Project](https://pub.dev/packages/sawo/example)
-
-## Versioning
-
-We use [SemVer](https://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags).
 
 ## Authors
 
@@ -128,4 +122,4 @@ We use [SemVer](https://semver.org/) for versioning. For the versions available,
 
 ## License
 
-This project is licensed under the MIT License
+This project is licensed under the BSD-3-Clause License

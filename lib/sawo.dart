@@ -4,6 +4,7 @@ import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 import 'package:uuid/uuid.dart';
 
+/// The Sawo class
 class Sawo {
   /// The parameters `apiKey` and `secretKey` must not be null.
   Sawo({
@@ -23,7 +24,7 @@ class Sawo {
   ///
   /// `identifierType` should be either 'email' or 'phone_number_sms'
   ///
-  /// when user has been successfully verified, the `callback` method will get invoked with the payload which contains userID, and is something went wrong the payload will get null
+  /// When the user is successfully verified, the `callback` method will get invoked with the payload containing the userID and other information. If something went wrong, it will return no values.
   signIn({
     required BuildContext context,
     required String identifierType,
