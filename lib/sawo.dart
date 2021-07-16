@@ -1,26 +1,37 @@
-import 'package:flutter/foundation.dart';
+import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 import 'package:uuid/uuid.dart';
 
 class Sawo {
-  String apiKey;
-  String secretKey;
-  String identifierType;
-
-  // constructor
+  /// The parameters `apiKey` and `secretKey` must not be null.
   Sawo({
-    @required this.apiKey,
-    @required this.secretKey,
-  }) {
-    assert(this.apiKey != null, "API Key ID is required");
-    assert(this.secretKey != null, "API Key ID is required");
-  }
+    required this.apiKey,
+    required this.secretKey,
+  });
 
-  signIn({BuildContext context, identifierType, callback}) async {
+  /// Put your API KEY in `apiKey`
+  final String apiKey;
+
+  /// Put your SECRET KEY in `secretKey`
+  final String secretKey;
+
+  late String identifierType;
+
+  /// Call `signIn` function for showing signIn form
+  ///
+  /// `identifierType` should be either 'email' or 'phone_number_sms'
+  ///
+  /// when user has been successfully verified, the `callback` method will get invoked with the payload which contains userID, and is something went wrong the payload will get null
+  signIn({
+    required BuildContext context,
+    required String identifierType,
+    callback,
+  }) async {
     identifierType = identifierType;
-    // Navigator.push returns a Future that completes after calling
-    //@required this.identifierType
+
+    /// Navigator.push returns a Future that completes after calling
     // Navigator.pop on the Selection Screen.
     final result = await Navigator.push(
       context,
@@ -33,50 +44,69 @@ class Sawo {
         ),
       ),
     );
+
     callback(context, result);
   }
 }
 
-// ignore: must_be_immutable
+/// For creating Webview of SAWO Login form
 class WebViewContainer extends StatefulWidget {
-  String apiKey;
-  String secretKey;
-  String identifierType;
-  BuildContext navContext;
+  final String apiKey;
+  final String secretKey;
+  final String identifierType;
+  final BuildContext navContext;
 
   WebViewContainer({
-    this.apiKey,
-    this.secretKey,
-    this.navContext,
-    this.identifierType,
+    required this.apiKey,
+    required this.secretKey,
+    required this.navContext,
+    required this.identifierType,
   });
   @override
   createState() => _WebViewContainerState(
-      apiKey: apiKey,
-      secretKey: secretKey,
-      navContext: navContext,
-      identifierType: identifierType);
+        apiKey: apiKey,
+        secretKey: secretKey,
+        navContext: navContext,
+        identifierType: identifierType,
+      );
 }
 
 class _WebViewContainerState extends State<WebViewContainer> {
-  String apiKey;
-  String secretKey;
-  String identifierType;
-  BuildContext navContext;
+  late String apiKey;
+  late String secretKey;
+  late String identifierType;
+  late BuildContext navContext;
 
   var _webviewKey = UniqueKey();
 
   // webview constants
   var _webviewURL;
   var _eventPrefix;
-  WebViewController _controller;
+  late WebViewController _controller;
+
+  bool isPageLoading = true;
+  bool isError = false;
 
   _WebViewContainerState({
-    this.apiKey,
-    this.secretKey,
-    this.navContext,
-    this.identifierType,
+    required this.apiKey,
+    required this.secretKey,
+    required this.navContext,
+    required this.identifierType,
   });
+
+  /// For checking the internet connection
+  void checkInternet() async {
+    bool result = await InternetConnectionChecker().hasConnection;
+    if (!result) {
+      print("Internet connection not available");
+      ScaffoldMessenger.of(navContext).showSnackBar(
+        SnackBar(content: Text("No Internet")),
+      );
+      Timer(Duration(seconds: 3), () {
+        Navigator.of(navContext).pop("");
+      });
+    }
+  }
 
   @override
   void initState() {
@@ -84,35 +114,72 @@ class _WebViewContainerState extends State<WebViewContainer> {
     var url = "https://websdk.sawolabs.com/?eventPrefix=$_eventPrefix";
     _webviewURL = url;
     super.initState();
+    checkInternet();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(),
-      body: Column(
+      body: Stack(
         children: [
-          Expanded(
-            child: WebView(
-              key: _webviewKey,
-              initialUrl: _webviewURL,
-              javascriptMode: JavascriptMode.unrestricted,
-              javascriptChannels: Set.from([
-                JavascriptChannel(
-                    name: 'messageHandler',
-                    onMessageReceived: (JavascriptMessage message) {
-                      var _payload = message.message;
-                      Navigator.pop(navContext, _payload);
-                    }),
-              ]),
-              onWebViewCreated: (WebViewController webviewController) {
-                _controller = webviewController;
-              },
-              onPageStarted: (String url) {
-                _controller.evaluateJavascript(_postJSMessage());
-              },
-            ),
-          )
+          Column(
+            children: [
+              Expanded(
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 25),
+                  child: WebView(
+                    key: _webviewKey,
+                    initialUrl: _webviewURL,
+                    javascriptMode: JavascriptMode.unrestricted,
+                    javascriptChannels: Set.from([
+                      JavascriptChannel(
+                          name: 'messageHandler',
+                          onMessageReceived: (JavascriptMessage message) {
+                            var _payload = message.message;
+                            Navigator.pop(navContext, _payload);
+                          }),
+                    ]),
+                    onWebViewCreated: (WebViewController webviewController) {
+                      _controller = webviewController;
+                    },
+                    onPageStarted: (String url) {
+                      setState(() {
+                        isPageLoading = true;
+                      });
+                      _controller.evaluateJavascript(_postJSMessage());
+                    },
+                    onPageFinished: (String url) {
+                      if (!isError) {
+                        setState(() {
+                          isPageLoading = false;
+                        });
+                      }
+                    },
+                    onWebResourceError: (error) {
+                      print(error.description);
+                      ScaffoldMessenger.of(navContext).showSnackBar(
+                        SnackBar(content: Text("No Internet")),
+                      );
+                      setState(() {
+                        isError = true;
+                        isPageLoading = true;
+                      });
+                    },
+                  ),
+                ),
+              ),
+            ],
+          ),
+
+          /// Showing `CircularProgressIndicator` according to the loading state
+          (isPageLoading)
+              ? Container(
+                  height: double.infinity,
+                  width: double.infinity,
+                  color: Colors.white,
+                  child: Center(child: CircularProgressIndicator()))
+              : Container(height: 0, width: 0),
         ],
       ),
     );
