@@ -53,6 +53,8 @@ import 'package:sawo/sawo.dart';
      );
 ```
 
+**_NOTE: It is always recommended to store your apiKey and secretKey in a .env file. Otherwise, create a separate .dart file and add it to the .gitignore. Just make sure that you are not exposing the keys publicly and also add them to the .gitignore before pushing the project to a public repo._**
+
 #### Redirect User to login page
 
 - sawo provides two ways to authenticate user, one by email and one by phone number.
