@@ -26,10 +26,15 @@ class SelectionButton extends StatefulWidget {
 }
 
 class _SelectionButtonState extends State<SelectionButton> {
-  // Sawo configuration object
-  var config = {};
+  // sawo object
+  Sawo sawo = Sawo(
+    apiKey: "Your API Key",
+    secretKey: "Your Secret key",
+  );
+
   // user payload
-  String user;
+  String user = "";
+
   void payloadCallback(context, payload) {
     if (payload == null || (payload is String && payload.length == 0)) {
       payload = "Login Failed :(";
@@ -39,56 +44,38 @@ class _SelectionButtonState extends State<SelectionButton> {
     });
   }
 
-  void toogleState(typedata, text) => setState(() {
-        config[typedata] = text;
-      });
-
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-        TextField(
-          onChanged: (text) {
-            toogleState("apiKey", text);
-          },
-          decoration:
-              InputDecoration(hintText: 'API Key', labelText: 'API Key'),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 20),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text("UserData :- $user"),
+            ElevatedButton(
+              onPressed: () {
+                sawo.signIn(
+                  context: context,
+                  identifierType: 'email',
+                  callback: payloadCallback,
+                );
+              },
+              child: Text('Email Login'),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                sawo.signIn(
+                  context: context,
+                  identifierType: 'phone_number_sms',
+                  callback: payloadCallback,
+                );
+              },
+              child: Text('Phone Login'),
+            ),
+          ],
         ),
-        TextField(
-          onChanged: (text) {
-            toogleState("secretKey", text);
-          },
-          decoration:
-              InputDecoration(hintText: 'SecretKey', labelText: 'SecretKey'),
-        ),
-        Text("UserData :- $user"),
-        ElevatedButton(
-          onPressed: () {
-            Sawo(
-              apiKey: config["apiKey"],
-              secretKey: config["secretKey"],
-            ).signIn(
-              context: context,
-              identifierType: 'email',
-              callback: payloadCallback,
-            );
-          },
-          child: Text('Email Login'),
-        ),
-        ElevatedButton(
-          onPressed: () {
-            Sawo(
-              apiKey: config["apiKey"],
-              secretKey: config["secretKey"],
-            ).signIn(
-              context: context,
-              identifierType: 'phone_number_sms',
-              callback: payloadCallback,
-            );
-          },
-          child: Text('Phone Login'),
-        ),
-      ]),
+      ),
     );
   }
 }
