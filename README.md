@@ -1,10 +1,10 @@
 # Sawo
 
-Passwordless and OTP-less Authentication for your website. It helps you to authenticate user via their email or phone number.
+Passwordless and OTP-less Authentication for your website and app. It helps you to authenticate user via their email or phone number.
 
 ## Getting Started
 
-- [Documentation](https://docs.sawolabs.com/sawo)
+- [Documentation](https://docs.sawolabs.com/sawo/hybrid/flutter)
 - [Developer dashboard](https://dev.sawolabs.com/)
 
 To get started, you can [create a free account at SAWO](https://dev.sawolabs.com/) to get your API keys.
@@ -34,15 +34,15 @@ import 'package:sawo/sawo.dart';
 
 #### Create API Key
 
-- Login to sawo [dev console.](dev.sawolabs.com)
+- Login to sawo [dev console.](https://dev.sawolabs.com/)
 - Create a new project
-  - Select either Android or iOS. But don't follow the steps which are mentioned there
+  - Select Hybrid and then select Flutter under that section
   - Set Project Name
 - Copy your API key & Secret Key from the file which has been downloaded automatically.
 
 #### Requirements
 
-- In [project]/android/app/build.gradle set minSdkVersion to >= 19.
+- In [project]/android/app/build.gradle set minSdkVersion to >= 19
 
 #### Create a Sawo Instance
 
