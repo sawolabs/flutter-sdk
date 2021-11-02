@@ -4,7 +4,7 @@ Passwordless and OTP-less Authentication for your website and app. It helps you 
 
 ## Getting Started
 
-- [Documentation](https://docs.sawolabs.com/sawo/hybrid/flutter)
+- [Documentation](https://docs.sawolabs.com/sawo/flutter)
 - [Developer dashboard](https://dev.sawolabs.com/)
 
 To get started, you can [create a free account at SAWO](https://dev.sawolabs.com/) to get your API keys.
