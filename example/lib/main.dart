@@ -1,42 +1,46 @@
 import 'package:flutter/material.dart';
-import 'package:sawo/sawo.dart';
+import 'package:sawo_sdk/sawo_sdk.dart';
 
 void main() {
-  runApp(MaterialApp(
+  runApp(const MaterialApp(
     title: 'Sawo Login Example',
     home: HomeScreen(),
   ));
 }
 
 class HomeScreen extends StatelessWidget {
+  const HomeScreen({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Sawo login example'),
+        title: const Text('Sawo login example'),
       ),
-      body: Center(child: SelectionButton()),
+      body: const Center(child: SelectionButton()),
     );
   }
 }
 
 class SelectionButton extends StatefulWidget {
+  const SelectionButton({Key? key}) : super(key: key);
+
   @override
   _SelectionButtonState createState() => _SelectionButtonState();
 }
 
 class _SelectionButtonState extends State<SelectionButton> {
-  // sawo object
+  // sawo object for Android/ios
   Sawo sawo = Sawo(
-    apiKey: "Your API Key",
-    secretKey: "Your Secret key",
+    apiKey: "",
+    secretKey: "",
   );
 
   // user payload
   String user = "";
 
   void payloadCallback(context, payload) {
-    if (payload == null || (payload is String && payload.length == 0)) {
+    if (payload == null || (payload is String && payload.isEmpty)) {
       payload = "Login Failed :(";
     }
     setState(() {
@@ -61,7 +65,7 @@ class _SelectionButtonState extends State<SelectionButton> {
                   callback: payloadCallback,
                 );
               },
-              child: Text('Email Login'),
+              child: const Text('Email Login'),
             ),
             ElevatedButton(
               onPressed: () {
@@ -71,7 +75,7 @@ class _SelectionButtonState extends State<SelectionButton> {
                   callback: payloadCallback,
                 );
               },
-              child: Text('Phone Login'),
+              child: const Text('Phone Login'),
             ),
           ],
         ),

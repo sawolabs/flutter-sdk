@@ -1,3 +1,13 @@
+## 0.1.3
+
+Changed:
+
+- native ios support
+- Package revamp
+- Deprecated methods replaced
+- Updated to latest dependencies
+- Fixed library path issue
+
 ## 0.1.2
 
 Changed:
@@ -9,7 +19,7 @@ Changed:
 
 Changed:
 
-- Downgrade dev dependecy to stable version
+- Downgrade dev dependency to stable version
 
 ## 0.0.9
 

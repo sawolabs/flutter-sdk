@@ -17,7 +17,7 @@ A step by step series of examples that tell you how to get a development env run
 
 ```
 dependencies:
-  sawo: ^0.1.2
+  sawo: ^0.1.3
 ```
 
 #### Install the plugin, by running mentioned command
@@ -29,7 +29,7 @@ flutter pub get
 #### Import the plugin into class
 
 ```
-import 'package:sawo/sawo.dart';
+import 'package:sawo_sdk/sawo_sdk.dart';
 ```
 
 #### Create API Key
@@ -60,17 +60,17 @@ import 'package:sawo/sawo.dart';
 - sawo provides two ways to authenticate user, one by email and one by phone number.
 
 ```dart
-  // sawo object
+  // sawo object for Android/ios
   Sawo sawo = Sawo(
-    apiKey: "Your API Key",
-    secretKey: "Your Secret key",
+    apiKey: "",
+    secretKey: "",
   );
 
   // user payload
   String user = "";
 
   void payloadCallback(context, payload) {
-    if (payload == null || (payload is String && payload.length == 0)) {
+    if (payload == null || (payload is String && payload.isEmpty)) {
       payload = "Login Failed :(";
     }
     setState(() {
@@ -95,7 +95,7 @@ import 'package:sawo/sawo.dart';
                   callback: payloadCallback,
                 );
               },
-              child: Text('Email Login'),
+              child: const Text('Email Login'),
             ),
             ElevatedButton(
               onPressed: () {
@@ -105,7 +105,7 @@ import 'package:sawo/sawo.dart';
                   callback: payloadCallback,
                 );
               },
-              child: Text('Phone Login'),
+              child: const Text('Phone Login'),
             ),
           ],
         ),

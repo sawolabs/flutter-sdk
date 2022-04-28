@@ -1,10 +1,10 @@
 # Sawo
 
-Passwordless and OTP-less Authentication for your website. It helps you to authenticate user via their email or phone number.
+Passwordless and OTP-less Authentication for your website and app. It helps you to authenticate user via their email or phone number.
 
 ## Getting Started
 
-- [Documentation](https://docs.sawolabs.com/sawo)
+- [Documentation](https://docs.sawolabs.com/sawo/flutter)
 - [Developer dashboard](https://dev.sawolabs.com/)
 
 To get started, you can [create a free account at SAWO](https://dev.sawolabs.com/) to get your API keys.
@@ -17,7 +17,7 @@ A step by step series of examples that tell you how to get a development env run
 
 ```
 dependencies:
-  sawo: ^0.1.2
+  sawo: ^0.1.3
 ```
 
 #### Install the plugin, by running mentioned command
@@ -29,20 +29,20 @@ flutter pub get
 #### Import the plugin into class
 
 ```
-import 'package:sawo/sawo.dart';
+import 'package:sawo_sdk/sawo_sdk.dart';
 ```
 
 #### Create API Key
 
-- Login to sawo [dev console.](dev.sawolabs.com)
+- Login to sawo [dev console.](https://dev.sawolabs.com/)
 - Create a new project
-  - Select either Android or iOS. But don't follow the steps which are mentioned there
+  - Select Hybrid and then select Flutter under that section
   - Set Project Name
 - Copy your API key & Secret Key from the file which has been downloaded automatically.
 
 #### Requirements
 
-- In [project]/android/app/build.gradle set minSdkVersion to >= 19.
+- In [project]/android/app/build.gradle set minSdkVersion to >= 19
 
 #### Create a Sawo Instance
 
@@ -53,22 +53,24 @@ import 'package:sawo/sawo.dart';
      );
 ```
 
+**_NOTE: It is always recommended to store your apiKey and secretKey in a .env file. Otherwise, create a separate .dart file and add it to the .gitignore. Just make sure that you are not exposing the keys publicly and also add them to the .gitignore before pushing the project to a public repo._**
+
 #### Redirect User to login page
 
 - sawo provides two ways to authenticate user, one by email and one by phone number.
 
 ```dart
-  // sawo object
+  // sawo object for Android/ios
   Sawo sawo = Sawo(
-    apiKey: "Your API Key",
-    secretKey: "Your Secret key",
+    apiKey: "",
+    secretKey: "",
   );
 
   // user payload
   String user = "";
 
   void payloadCallback(context, payload) {
-    if (payload == null || (payload is String && payload.length == 0)) {
+    if (payload == null || (payload is String && payload.isEmpty)) {
       payload = "Login Failed :(";
     }
     setState(() {
@@ -93,7 +95,7 @@ import 'package:sawo/sawo.dart';
                   callback: payloadCallback,
                 );
               },
-              child: Text('Email Login'),
+              child: const Text('Email Login'),
             ),
             ElevatedButton(
               onPressed: () {
@@ -103,7 +105,7 @@ import 'package:sawo/sawo.dart';
                   callback: payloadCallback,
                 );
               },
-              child: Text('Phone Login'),
+              child: const Text('Phone Login'),
             ),
           ],
         ),
