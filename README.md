@@ -44,7 +44,9 @@ import 'package:sawo/sawo.dart';
 
 - In [project]/android/app/build.gradle set minSdkVersion to >= 19
 
-- In [project]/android/app/src/main/AndroidManifest.xml add this line <uses-permission android:name="android.permission.INTERNET"/>
+- In [project]/android/app/src/main/AndroidManifest.xml add this line 
+
+```<uses-permission android:name="android.permission.INTERNET"/>```
 
 #### Create a Sawo Instance
 
