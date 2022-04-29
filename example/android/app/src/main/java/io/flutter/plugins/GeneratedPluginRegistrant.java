@@ -16,9 +16,9 @@ public final class GeneratedPluginRegistrant {
   private static final String TAG = "GeneratedPluginRegistrant";
   public static void registerWith(@NonNull FlutterEngine flutterEngine) {
     try {
-      flutterEngine.getPlugins().add(new com.sawolabs.sawosdk.sawo_sdk.SawoSdkPlugin());
+      flutterEngine.getPlugins().add(new com.sawolabs.sawosdk.sawo.SawoPlugin());
     } catch(Exception e) {
-      Log.e(TAG, "Error registering plugin sawo_sdk, com.sawolabs.sawosdk.sawo_sdk.SawoSdkPlugin", e);
+      Log.e(TAG, "Error registering plugin sawo, com.sawolabs.sawosdk.sawo.SawoPlugin", e);
     }
     try {
       flutterEngine.getPlugins().add(new io.flutter.plugins.webviewflutter.WebViewFlutterPlugin());

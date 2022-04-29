@@ -25,6 +25,6 @@ flutter:
     platforms:
       android:
         package: com.sawolabs.sawosdk.sawo
-        pluginClass: SawoSdkPlugin
+        pluginClass: SawoPlugin
       ios:
-        pluginClass: SawoSdkPlugin
+        pluginClass: SawoPlugin

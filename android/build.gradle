@@ -1,4 +1,4 @@
-group 'com.sawolabs.sawosdk.sawo_sdk'
+group 'com.sawolabs.sawosdk.sawo'
 version '1.0-SNAPSHOT'
 
 buildscript {

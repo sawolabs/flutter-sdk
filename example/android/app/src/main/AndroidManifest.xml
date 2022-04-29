@@ -1,7 +1,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.sawolabs.sawosdk.sawo_sdk_example">
+    package="com.sawolabs.sawosdk.sawo_example">
+
+    <uses-permission android:name="android.permission.INTERNET" />
    <application
-        android:label="sawo_sdk_example"
+        android:label="sawo_example"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

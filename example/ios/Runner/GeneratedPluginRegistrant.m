@@ -6,10 +6,10 @@
 
 #import "GeneratedPluginRegistrant.h"
 
-#if __has_include(<sawo_sdk/SawoSdkPlugin.h>)
-#import <sawo_sdk/SawoSdkPlugin.h>
+#if __has_include(<sawo/SawoPlugin.h>)
+#import <sawo/SawoPlugin.h>
 #else
-@import sawo_sdk;
+@import sawo;
 #endif
 
 #if __has_include(<webview_flutter_wkwebview/FLTWebViewFlutterPlugin.h>)
@@ -21,7 +21,7 @@
 @implementation GeneratedPluginRegistrant
 
 + (void)registerWithRegistry:(NSObject<FlutterPluginRegistry>*)registry {
-  [SawoSdkPlugin registerWithRegistrar:[registry registrarForPlugin:@"SawoSdkPlugin"]];
+  [SawoPlugin registerWithRegistrar:[registry registrarForPlugin:@"SawoPlugin"]];
   [FLTWebViewFlutterPlugin registerWithRegistrar:[registry registrarForPlugin:@"FLTWebViewFlutterPlugin"]];
 }
 

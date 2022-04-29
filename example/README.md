@@ -29,7 +29,7 @@ flutter pub get
 #### Import the plugin into class
 
 ```
-import 'package:sawo_sdk/sawo_sdk.dart';
+import 'package:sawo/sawo.dart';
 ```
 
 #### Create API Key
@@ -43,6 +43,8 @@ import 'package:sawo_sdk/sawo_sdk.dart';
 #### Requirements
 
 - In [project]/android/app/build.gradle set minSdkVersion to >= 19
+
+- In [project]/android/app/src/main/AndroidManifest.xml add this line <uses-permission android:name="android.permission.INTERNET"/>
 
 #### Create a Sawo Instance
 

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:sawo_sdk/sawo_sdk.dart';
+import 'package:sawo/sawo.dart';
 
 void main() {
   runApp(const MaterialApp(
