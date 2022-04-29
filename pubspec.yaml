@@ -1,4 +1,4 @@
-name: sawo_sdk
+name: sawo
 description: Passwordless and OTP-less Authentication for your website. It helps you to authenticate user via their email or phone number.
 version: 0.1.3
 homepage: https://github.com/sawolabs/flutter-sdk
@@ -24,7 +24,7 @@ flutter:
   plugin:
     platforms:
       android:
-        package: com.sawolabs.sawosdk.sawo_sdk
+        package: com.sawolabs.sawosdk.sawo
         pluginClass: SawoSdkPlugin
       ios:
         pluginClass: SawoSdkPlugin
